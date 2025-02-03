@@ -398,6 +398,14 @@ require('lazy').setup {
         }
       end, { desc = '[S]earch [/] in Open Files' })
 
+      vim.keymap.set('n', '<leader>n', function()
+        vim.cmd('bn')
+      end, { desc = '[n] Switch to next buffer (:bn)' })
+
+      vim.keymap.set('n', '<leader>W', function()
+        vim.cmd('wincmd w')
+      end, { desc = '[W] Switch between panes (:wincmd w)' })
+
       -- Shortcut for searching your neovim configuration files
       vim.keymap.set('n', '<leader>sn', function()
         builtin.find_files { cwd = vim.fn.stdpath 'config' }
@@ -826,6 +834,15 @@ require('lazy').setup {
       --    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
       --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
     end,
+  },
+  {
+    'stevearc/oil.nvim',
+    ---@module 'oil'
+    ---@type oil.SetupOpts
+    opts = {},
+    -- Optional dependencies
+    -- dependencies = { { "echasnovski/mini.icons", opts = {} } },
+    dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if prefer nvim-web-devicons
   },
 
   -- The following two comments only work if you have downloaded the kickstart repo, not just copy pasted the
