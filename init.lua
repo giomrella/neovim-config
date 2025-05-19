@@ -83,7 +83,15 @@ I hope you enjoy your Neovim journey,
 
 P.S. You can delete this when you're done too. It's your config now! :)
 --]]
-
+--
+-- filter which-key warnings
+local orig_notify = vim.notify
+vim.notify = function(msg, level, opts)
+  if msg:match("which%-key") and level == vim.log.levels.WARN then
+    return
+  end
+  orig_notify(msg, level, opts)
+end
 -- Set <space> as the leader key
 -- See `:help mapleader`
 --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
